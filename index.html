@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Aesthetique – Skin | Hair | Laser Clinic | Dr. Pradnya Asutkar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1a7b6b;
+    --teal-light: #2aa090;
+    --teal-pale: #e6f4f1;
+    --magenta: #c4457a;
+    --magenta-light: #e8538e;
+    --magenta-pale: #fceef5;
+    --white: #ffffff;
+    --off-white: #fafaf8;
+    --beige: #f5f0eb;
+    --grey-light: #f2f2f0;
+    --grey: #8a8a8a;
+    --grey-dark: #444444;
+    --text: #1e1e1e;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --shadow: 0 8px 32px rgba(0,0,0,0.08);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+    --radius: 16px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── PAGE SYSTEM ─────────────────────────────── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── NAVBAR ──────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26,123,107,0.12);
+    padding: 0 clamp(16px, 5vw, 60px);
+    height: 70px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex; flex-direction: column; cursor: pointer;
+  }
+  .nav-logo .brand {
+    font-family: var(--serif);
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 600;
+    color: var(--teal);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  .nav-logo .tagline {
+    font-size: 10px;
+    color: var(--magenta);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 4px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover, .nav-links a.active-link {
+    color: var(--teal);
+    background: var(--teal-pale);
+  }
+
+  .nav-cta {
+    background: var(--magenta) !important;
+    color: white !important;
+    border-radius: 30px !important;
+    padding: 9px 20px !important;
+  }
+  .nav-cta:hover { background: var(--magenta-light) !important; }
+
+  /* hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 8px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--text); border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 70px; left: 0; right: 0; z-index: 999;
+    background: white;
+    padding: 20px;
+    border-bottom: 1px solid var(--grey-light);
+    box-shadow: var(--shadow);
+    flex-direction: column; gap: 4px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    text-decoration: none; color: var(--text);
+    padding: 12px 16px; border-radius: 8px;
+    font-size: 14px; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .mobile-menu a:hover { background: var(--teal-pale); color: var(--teal); }
+  .mobile-menu .m-cta {
+    background: var(--magenta); color: white !important;
+    text-align: center; border-radius: 30px; margin-top: 8px;
+  }
+
+  /* ── SHARED COMPONENTS ─────────────────────── */
+  .page-top { padding-top: 70px; }
+
+  .hero-section {
+    background: linear-gradient(135deg, #0d5247 0%, #1a7b6b 40%, #2aa090 70%, #1a6b78 100%);
+    padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 80px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-section h1 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 6vw, 64px);
+    color: white;
+    line-height: 1.15;
+    font-weight: 400;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero-section p {
+    color: rgba(255,255,255,0.85);
+    font-size: clamp(14px, 2vw, 18px);
+    max-width: 600px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+    position: relative;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none;
+    cursor: pointer; border: none;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--magenta); color: white; }
+  .btn-primary:hover { background: #a83868; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,69,122,0.35); }
+  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.6); }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+  .btn-teal { background: var(--teal); color: white; }
+  .btn-teal:hover { background: #155e51; transform: translateY(-2px); }
+  .btn-white { background: white; color: var(--teal); }
+  .btn-white:hover { background: var(--teal-pale); }
+
+  .btn-group { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; position: relative; }
+
+  section { padding: clamp(50px, 8vw, 100px) clamp(20px, 5vw, 80px); }
+
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--magenta); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .section-subtitle {
+    color: var(--grey);
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+  .text-center { text-align: center; }
+  .text-center .section-subtitle { margin: 0 auto 40px; }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+
+  /* SERVICE CARDS */
+  .service-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .service-card-header {
+    padding: 28px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    position: relative;
+  }
+  .service-card-header.magenta {
+    background: linear-gradient(135deg, var(--magenta), var(--magenta-light));
+  }
+  .service-card-header.teal2 {
+    background: linear-gradient(135deg, #1a5f7a, #2a90b0);
+  }
+  .service-card-header.purple {
+    background: linear-gradient(135deg, #6b4f9e, #9b7fd4);
+  }
+  .service-card-icon { font-size: 36px; margin-bottom: 12px; }
+  .service-card-header h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: white;
+    font-weight: 600;
+  }
+  .service-card-body { padding: 24px 28px; }
+  .service-card-body p { color: var(--grey-dark); font-size: 13.5px; line-height: 1.7; margin-bottom: 16px; }
+  .treatment-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .tag {
+    background: var(--teal-pale);
+    color: var(--teal);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 500;
+  }
+  .tag.m { background: var(--magenta-pale); color: var(--magenta); }
+
+  /* WHY US */
+  .why-card {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s;
+  }
+  .why-card:hover { box-shadow: var(--shadow); }
+  .why-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--teal-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .why-icon.m { background: var(--magenta-pale); }
+  .why-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .why-card p { font-size: 13px; color: var(--grey); line-height: 1.6; }
+
+  /* PROCESS */
+  .process-steps { display: flex; flex-wrap: wrap; gap: 0; position: relative; }
+  .process-step {
+    flex: 1; min-width: 150px;
+    text-align: center;
+    padding: 32px 20px;
+    position: relative;
+  }
+  .step-num {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    position: relative; z-index: 1;
+  }
+  .process-step h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .process-step p { font-size: 12.5px; color: var(--grey); line-height: 1.5; }
+
+  /* TESTIMONIALS */
+  .testimonial-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    position: relative;
+    border-left: 4px solid var(--teal);
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: var(--serif);
+    font-size: 80px;
+    color: var(--teal-pale);
+    position: absolute;
+    top: 10px; left: 24px;
+    line-height: 1;
+  }
+  .testimonial-card p { font-size: 14.5px; line-height: 1.8; color: var(--grey-dark); padding-top: 24px; }
+  .testimonial-card .stars { color: #f5a623; font-size: 14px; margin-top: 16px; }
+  .testimonial-card .patient { font-size: 13px; color: var(--grey); margin-top: 8px; font-weight: 500; }
+
+  /* FAQ */
+  .faq-item {
+    border-bottom: 1px solid var(--grey-light);
+    padding: 20px 0;
+  }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; gap: 12px;
+  }
+  .faq-q span { font-size: 15px; font-weight: 600; flex: 1; }
+  .faq-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--teal-pale);
+    color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 300; flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .faq-item.open .faq-icon { background: var(--teal); color: white; transform: rotate(45deg); }
+  .faq-a {
+    display: none;
+    padding-top: 12px;
+    font-size: 14px; color: var(--grey-dark);
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a { display: block; }
+
+  /* CTA BAND */
+  .cta-band {
+    background: linear-gradient(135deg, var(--magenta) 0%, #e8538e 50%, #c4457a 100%);
+    padding: clamp(50px, 8vw, 80px) clamp(20px, 5vw, 80px);
+    text-align: center;
+  }
+  .cta-band h2 { font-family: var(--serif); font-size: clamp(26px, 4vw, 44px); color: white; margin-bottom: 12px; }
+  .cta-band p { color: rgba(255,255,255,0.85); margin-bottom: 32px; font-size: 15px; }
+
+  /* FOOTER */
+  footer {
+    background: #0d1a18;
+    color: rgba(255,255,255,0.8);
+    padding: clamp(40px, 6vw, 70px) clamp(20px, 5vw, 80px) 30px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-brand .brand { font-family: var(--serif); font-size: 26px; color: white; letter-spacing: 2px; }
+  .footer-brand .tagline { font-size: 11px; color: var(--teal-light); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .footer-brand p { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.6); }
+  footer h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal-light); margin-bottom: 16px; font-weight: 600; }
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 10px; }
+  footer ul li a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  footer ul li a:hover { color: white; }
+  .footer-contact p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.8; }
+  .footer-contact a { color: var(--teal-light); text-decoration: none; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    width: 56px; height: 56px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    cursor: pointer;
+    font-size: 28px;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* ── HOME PAGE ──────────────────────────────── */
+  .home-hero {
+    background: linear-gradient(135deg, #0b3d35 0%, #1a7b6b 50%, #1e8c7a 100%);
+    min-height: 92vh;
+    display: flex; align-items: center;
+    padding: 100px clamp(20px, 5vw, 80px) 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .home-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(196,69,122,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  }
+  .home-hero-content {
+    max-width: 600px; position: relative; z-index: 1;
+    animation: fadeUp 0.8s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .home-hero .label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.9);
+    padding: 6px 14px; border-radius: 30px;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 24px; backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .home-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6vw, 68px);
+    color: white; font-weight: 400;
+    line-height: 1.1; margin-bottom: 8px;
+  }
+  .home-hero h1 em { font-style: italic; color: #7edfd0; }
+  .home-hero .sub {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: rgba(255,255,255,0.7); font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .home-hero p {
+    color: rgba(255,255,255,0.75);
+    font-size: 15px; line-height: 1.8;
+    margin-bottom: 36px;
+  }
+  .hero-features {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-bottom: 36px;
+  }
+  .hero-feat {
+    display: flex; align-items: center; gap: 6px;
+    color: rgba(255,255,255,0.85); font-size: 12.5px;
+    background: rgba(255,255,255,0.08);
+    padding: 6px 12px; border-radius: 20px;
+  }
+  .hero-feat::before { content: '✓'; color: #7edfd0; font-weight: bold; }
+
+  .trust-strip {
+    background: var(--teal);
+    padding: 24px clamp(20px, 5vw, 80px);
+    display: flex; align-items: center; justify-content: center;
+    gap: clamp(20px, 4vw, 60px); flex-wrap: wrap;
+  }
+  .trust-item { text-align: center; }
+  .trust-item .num {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 36px);
+    color: white; font-weight: 600; line-height: 1;
+  }
+  .trust-item .lbl { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+  .credentials-strip {
+    background: var(--beige);
+    padding: 28px clamp(20px, 5vw, 80px);
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cred-item {
+    display: flex; align-items: center; gap: 10px;
+    background: white; border-radius: 30px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .cred-item .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+  .cred-item span { font-size: 12.5px; font-weight: 500; color: var(--grey-dark); }
+
+  /* ABOUT PREVIEW */
+  .about-preview {
+    background: var(--off-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+  .about-preview-img {
+    background: linear-gradient(160deg, var(--teal) 0%, #0d5247 100%);
+    min-height: 400px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-preview-img .decor {
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    position: absolute; top: -40px; left: -40px;
+  }
+  .about-preview-img .decor2 {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(196,69,122,0.2);
+    position: absolute; bottom: 20px; right: 20px;
+  }
+  .clinic-badge {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(255,255,255,0.25);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    position: relative; z-index: 1;
+  }
+  .clinic-badge .icon { font-size: 40px; margin-bottom: 8px; }
+  .clinic-badge p { color: white; font-family: var(--serif); font-size: 16px; font-weight: 400; letter-spacing: 1px; }
+  .about-preview-text {
+    padding: clamp(40px, 5vw, 70px);
+    background: white;
+  }
+  .value-list { list-style: none; margin: 20px 0 28px; }
+  .value-list li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--grey-dark);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--grey-light);
+  }
+  .value-list li .tick {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--teal-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--teal); flex-shrink: 0;
+  }
+
+  /* SERVICES SECTION */
+  .services-section { background: var(--off-white); }
+
+  /* BG ALTERNATING */
+  .bg-white { background: white; }
+  .bg-off { background: var(--off-white); }
+  .bg-beige { background: var(--beige); }
+  .bg-teal { background: var(--teal-pale); }
+
+  /* DOCTOR CARD */
+  .doctor-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .doc-left {
+    background: linear-gradient(160deg, var(--teal) 0%, #0d5247 100%);
+    padding: 48px 32px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; gap: 20px;
+  }
+  .doc-avatar {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 3px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+  }
+  .doc-name { font-family: var(--serif); font-size: 24px; color: white; font-weight: 600; }
+  .doc-title { font-size: 13px; color: rgba(255,255,255,0.75); letter-spacing: 1px; }
+  .qual-badges { display: flex; flex-direction: column; gap: 6px; }
+  .qual-badge {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .doc-right { padding: 48px; }
+  .expertise-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .etag {
+    background: var(--teal-pale);
+    color: var(--teal);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+
+  /* ── ABOUT PAGE ─────────────────────────────── */
+  .about-intro {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    padding: clamp(50px, 8vw, 100px) clamp(20px, 5vw, 80px);
+  }
+  .mvv-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .mvv-card {
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    position: relative; overflow: hidden;
+  }
+  .mvv-card.mission { background: linear-gradient(135deg, var(--teal), var(--teal-light)); }
+  .mvv-card.vision { background: linear-gradient(135deg, var(--magenta), var(--magenta-light)); }
+  .mvv-card.values { background: linear-gradient(135deg, #1a5f7a, #2a90b0); }
+  .mvv-card h3 { font-family: var(--serif); font-size: 24px; color: white; margin-bottom: 16px; }
+  .mvv-card p { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.7; }
+  .mvv-icon { font-size: 40px; margin-bottom: 16px; }
+  .values-list { list-style: none; }
+  .values-list li { color: rgba(255,255,255,0.85); font-size: 14px; padding: 4px 0; }
+  .values-list li::before { content: '◆ '; font-size: 8px; }
+
+  .facility-card {
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex; align-items: center; gap: 16px;
+    transition: all 0.3s;
+    border: 1px solid var(--grey-light);
+  }
+  .facility-card:hover { background: var(--teal-pale); border-color: var(--teal); }
+  .fac-icon { font-size: 28px; }
+  .facility-card h4 { font-size: 15px; font-weight: 600; }
+  .facility-card p { font-size: 13px; color: var(--grey); }
+
+  /* ── SERVICES PAGE ──────────────────────────── */
+  .treatment-detail {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    transition: box-shadow 0.3s;
+  }
+  .treatment-detail:hover { box-shadow: var(--shadow-lg); }
+  .td-header {
+    padding: 28px;
+    background: linear-gradient(135deg, var(--teal-pale), white);
+    border-bottom: 1px solid var(--grey-light);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .td-icon {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+  }
+  .td-icon.m { background: linear-gradient(135deg, var(--magenta), var(--magenta-light)); }
+  .td-icon.b { background: linear-gradient(135deg, #1a5f7a, #2a90b0); }
+  .td-icon.p { background: linear-gradient(135deg, #6b4f9e, #9b7fd4); }
+  .td-header h3 { font-family: var(--serif); font-size: 22px; }
+  .td-header p { font-size: 13px; color: var(--grey); margin-top: 4px; }
+  .td-body { padding: 24px 28px; }
+  .td-body p { font-size: 14px; color: var(--grey-dark); line-height: 1.7; margin-bottom: 16px; }
+  .td-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* ── CONTACT PAGE ───────────────────────────── */
+  .contact-layout {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 48px; align-items: flex-start;
+  }
+  .contact-info-card {
+    background: linear-gradient(160deg, var(--teal) 0%, #0d5247 100%);
+    border-radius: var(--radius);
+    padding: 40px;
+    color: white;
+  }
+  .contact-info-card h3 { font-family: var(--serif); font-size: 28px; margin-bottom: 8px; }
+  .contact-info-card > p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 32px; }
+  .contact-detail {
+    display: flex; gap: 14px; margin-bottom: 24px; align-items: flex-start;
+  }
+  .cd-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .cd-info h4 { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .cd-info p { font-size: 14px; line-height: 1.6; }
+  .timing-row { display: flex; justify-content: space-between; font-size: 13px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .timing-row:last-child { border: 0; }
+  .timing-row .day { color: rgba(255,255,255,0.7); }
+  .timing-row .time { color: white; font-weight: 500; }
+
+  .contact-form { background: white; border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); }
+  .contact-form h3 { font-family: var(--serif); font-size: 28px; margin-bottom: 8px; }
+  .contact-form p.sub { color: var(--grey); font-size: 14px; margin-bottom: 28px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .form-group label { font-size: 12.5px; font-weight: 600; color: var(--grey-dark); letter-spacing: 0.5px; }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 12px 16px;
+    border: 1.5px solid var(--grey-light);
+    border-radius: 10px;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--text);
+    background: var(--off-white);
+    transition: border-color 0.2s;
+    outline: none;
+    width: 100%;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--teal);
+    background: white;
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-span { grid-column: 1 / -1; }
+
+  /* ── DOCTOR PAGE ────────────────────────────── */
+  .doctor-hero {
+    background: linear-gradient(135deg, #0b3d35 0%, #1a7b6b 100%);
+    padding: clamp(80px, 10vw, 130px) clamp(20px, 5vw, 80px) clamp(50px, 7vw, 90px);
+    display: flex; align-items: center; gap: 48px;
+    flex-wrap: wrap;
+  }
+  .doc-hero-avatar {
+    width: clamp(120px, 20vw, 200px);
+    height: clamp(120px, 20vw, 200px);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: 3px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(50px, 8vw, 80px);
+    flex-shrink: 0;
+  }
+  .doc-hero-text h1 { font-family: var(--serif); font-size: clamp(32px, 5vw, 52px); color: white; margin-bottom: 8px; }
+  .doc-hero-text p { color: rgba(255,255,255,0.75); font-size: 16px; margin-bottom: 20px; }
+  .doc-qual-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .doc-qual-pill {
+    background: rgba(255,255,255,0.12);
+    color: white; border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px; border-radius: 20px; font-size: 12.5px;
+  }
+
+  /* ── FAQ PAGE ───────────────────────────────── */
+  .faq-categories { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+  .faq-cat {
+    padding: 8px 18px; border-radius: 30px;
+    background: var(--grey-light); color: var(--grey-dark);
+    font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s; border: none;
+  }
+  .faq-cat.active, .faq-cat:hover {
+    background: var(--teal); color: white;
+  }
+
+  /* ── BEFORE AFTER ───────────────────────────── */
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .gallery-item {
+    border-radius: 12px; overflow: hidden;
+    background: linear-gradient(160deg, var(--teal-pale), white);
+    aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--grey-light);
+    transition: all 0.3s; cursor: pointer;
+    flex-direction: column; gap: 8px;
+  }
+  .gallery-item:hover { border-color: var(--teal); transform: scale(1.02); }
+  .gallery-item .gi-icon { font-size: 40px; }
+  .gallery-item .gi-label { font-size: 13px; font-weight: 600; color: var(--teal); }
+  .gallery-item .gi-sub { font-size: 11px; color: var(--grey); }
+
+  /* RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .about-preview { grid-template-columns: 1fr; }
+    .about-preview-img { min-height: 280px; }
+    .doctor-card { grid-template-columns: 1fr; }
+    .doc-left { padding: 36px 24px; }
+    .about-intro { grid-template-columns: 1fr; gap: 32px; }
+    .contact-layout { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .home-hero { min-height: auto; padding: 90px 20px 50px; }
+    .trust-strip { gap: 20px; padding: 20px; }
+    .credentials-strip { padding: 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .doctor-hero { flex-direction: column; gap: 24px; }
+    .mvv-grid { grid-template-columns: 1fr; }
+    .process-step { min-width: 120px; }
+  }
+
+  @media (max-width: 480px) {
+    section { padding: 40px 16px; }
+    .btn { padding: 12px 20px; font-size: 13px; }
+    .trust-item .num { font-size: 22px; }
+    .service-card-header { padding: 22px; }
+    .service-card-body { padding: 20px; }
+    .contact-info-card { padding: 28px 20px; }
+    .contact-form { padding: 28px 20px; }
+    .doc-right { padding: 28px 20px; }
+  }
+
+  /* SUCCESS MSG */
+  .success-msg {
+    display: none;
+    background: var(--teal-pale);
+    border: 1px solid var(--teal);
+    border-radius: 10px;
+    padding: 16px 20px;
+    color: var(--teal);
+    font-size: 14px;
+    margin-top: 16px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/918459323304" target="_blank" title="WhatsApp">💬</a>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <span class="brand">LA AESTHETIQUE</span>
+    <span class="tagline">Skin · Hair · Laser</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active-link">Home</a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a href="#" onclick="showPage('services')" id="nav-services">Services</a></li>
+    <li><a href="#" onclick="showPage('doctor')" id="nav-doctor">Doctor</a></li>
+    <li><a href="#" onclick="showPage('gallery')" id="nav-gallery">Gallery</a></li>
+    <li><a href="#" onclick="showPage('faq')" id="nav-faq">FAQs</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    <li><a href="#" onclick="showPage('contact')" class="nav-cta btn">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showPage('home');toggleMenu()">🏠 Home</a>
+  <a href="#" onclick="showPage('about');toggleMenu()">ℹ️ About Us</a>
+  <a href="#" onclick="showPage('services');toggleMenu()">💆 Services</a>
+  <a href="#" onclick="showPage('doctor');toggleMenu()">👩‍⚕️ Doctor</a>
+  <a href="#" onclick="showPage('gallery');toggleMenu()">📸 Gallery</a>
+  <a href="#" onclick="showPage('faq');toggleMenu()">❓ FAQs</a>
+  <a href="#" onclick="showPage('contact');toggleMenu()">📞 Contact</a>
+  <a href="#" onclick="showPage('contact');toggleMenu()" class="m-cta">📅 Book Appointment</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  HOME PAGE                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-home" class="page active page-top">
+
+  <!-- HERO -->
+  <div class="home-hero">
+    <div class="home-hero-content">
+      <div class="label">✨ Advanced Aesthetic Clinic · Nagpur</div>
+      <h1>Transform Your <em>Skin, Hair</em> &amp; Confidence</h1>
+      <p class="sub">Advanced Dermatology & Aesthetic Medicine</p>
+      <p>At La Aesthetique, we specialize in advanced dermatology, laser procedures, and hair restoration — delivering personalized care using modern technology and medically proven procedures.</p>
+      <div class="hero-features">
+        <span class="hero-feat">Advanced Laser Technology</span>
+        <span class="hero-feat">Personalized Skin Solutions</span>
+        <span class="hero-feat">Expert Dermatology Care</span>
+        <span class="hero-feat">Hygienic & Safe</span>
+      </div>
+      <div class="btn-group" style="justify-content:flex-start">
+        <a href="#" class="btn btn-primary" onclick="showPage('contact')">📅 Book Appointment</a>
+        <a href="tel:8459323304" class="btn btn-outline">📞 Call Now</a>
+        <a href="https://wa.me/918459323304" class="btn btn-outline" target="_blank">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST NUMBERS -->
+  <div class="trust-strip">
+    <div class="trust-item"><div class="num">500+</div><div class="lbl">Happy Patients</div></div>
+    <div class="trust-item"><div class="num">4+</div><div class="lbl">Years Experience</div></div>
+    <div class="trust-item"><div class="num">20+</div><div class="lbl">Treatments</div></div>
+    <div class="trust-item"><div class="num">100%</div><div class="lbl">Safe Procedures</div></div>
+  </div>
+
+  <!-- CREDENTIALS STRIP -->
+  <div class="credentials-strip">
+    <div class="cred-item"><div class="dot"></div><span>MBBS, MD (Skin & VD)</span></div>
+    <div class="cred-item"><div class="dot"></div><span>Fellowship in Lasers</span></div>
+    <div class="cred-item"><div class="dot"></div><span>Fellowship in Cosmetology</span></div>
+    <div class="cred-item"><div class="dot"></div><span>Aesthetic Medicine Specialist</span></div>
+  </div>
+
+  <!-- ABOUT PREVIEW -->
+  <div class="about-preview">
+    <div class="about-preview-img">
+      <div class="decor"></div>
+      <div class="decor2"></div>
+      <div class="clinic-badge">
+        <div class="icon">🏥</div>
+        <p>La Aesthetique<br>Nagpur</p>
+      </div>
+    </div>
+    <div class="about-preview-text">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">About La Aesthetique</h2>
+      <p style="color:var(--grey-dark);font-size:14.5px;line-height:1.8;margin-bottom:16px">La Aesthetique is a modern Skin, Hair & Laser Clinic dedicated to comprehensive dermatology and aesthetic solutions. We offer diagnosis and treatment for skin disorders, hair loss, laser procedures, and anti-ageing treatments.</p>
+      <p style="color:var(--grey);font-size:13.5px;line-height:1.8;margin-bottom:24px">We focus on delivering customized treatment plans based on each patient's skin type, concerns, and goals. Our commitment to safety, hygiene, and patient satisfaction makes us one of the trusted aesthetic clinics in Nagpur.</p>
+      <ul class="value-list">
+        <li><span class="tick">✓</span> Patient-Centered Personalized Care</li>
+        <li><span class="tick">✓</span> Modern Technology & Equipment</li>
+        <li><span class="tick">✓</span> Hygienic & Safe Clinical Setup</li>
+        <li><span class="tick">✓</span> Transparent & Ethical Approach</li>
+      </ul>
+      <a href="#" class="btn btn-teal" onclick="showPage('about')">Read More About Us →</a>
+    </div>
+  </div>
+
+  <!-- SERVICES OVERVIEW -->
+  <section class="bg-off">
+    <div class="text-center">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Our Specialized Treatments</h2>
+      <p class="section-subtitle">Comprehensive aesthetic and dermatology solutions tailored for your skin and hair concerns.</p>
+    </div>
+    <div class="grid-2">
+      <div class="service-card">
+        <div class="service-card-header">
+          <div class="service-card-icon">🧴</div>
+          <h3>Skin Treatments</h3>
+        </div>
+        <div class="service-card-body">
+          <p>Comprehensive treatments for acne, pigmentation, scars, infections, allergies, and skin rejuvenation using modern dermatology techniques.</p>
+          <div class="treatment-tags">
+            <span class="tag">Acne Scar Treatment</span>
+            <span class="tag">Chemical Peels</span>
+            <span class="tag">Pigmentation</span>
+            <span class="tag">Hydra Facial</span>
+            <span class="tag">Cryotherapy</span>
+          </div>
+          <a href="#" class="btn btn-teal" style="font-size:13px;padding:10px 20px" onclick="showPage('services')">Explore Skin Treatments →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-card-header magenta">
+          <div class="service-card-icon">💇</div>
+          <h3>Hair Treatments</h3>
+        </div>
+        <div class="service-card-body">
+          <p>Advanced hair restoration and scalp treatments for hair fall, thinning, baldness, dandruff, and scalp health improvement.</p>
+          <div class="treatment-tags">
+            <span class="tag m">PRP Therapy</span>
+            <span class="tag m">GFC Mesotherapy</span>
+            <span class="tag m">Stem Cell Therapy</span>
+            <span class="tag m">Derma Roller</span>
+          </div>
+          <a href="#" class="btn btn-primary" style="font-size:13px;padding:10px 20px" onclick="showPage('services')">Explore Hair Treatments →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-card-header teal2">
+          <div class="service-card-icon">✨</div>
+          <h3>Laser Treatments</h3>
+        </div>
+        <div class="service-card-body">
+          <p>State-of-the-art laser procedures for skin rejuvenation, permanent hair reduction, tattoo removal, and pigmentation correction.</p>
+          <div class="treatment-tags">
+            <span class="tag">Laser Hair Removal</span>
+            <span class="tag">Tattoo Removal</span>
+            <span class="tag">Laser Facial</span>
+            <span class="tag">Scar Reduction</span>
+          </div>
+          <a href="#" class="btn btn-teal" style="font-size:13px;padding:10px 20px" onclick="showPage('services')">Explore Laser Treatments →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-card-header purple">
+          <div class="service-card-icon">⏳</div>
+          <h3>Anti-Ageing Treatments</h3>
+        </div>
+        <div class="service-card-body">
+          <p>Advanced anti-ageing procedures to restore youthful skin, improve elasticity, reduce wrinkles, and enhance facial contours.</p>
+          <div class="treatment-tags">
+            <span class="tag m">Botox</span>
+            <span class="tag m">Dermal Fillers</span>
+            <span class="tag m">Skin Boosters</span>
+            <span class="tag m">Thread Lift</span>
+          </div>
+          <a href="#" class="btn btn-primary" style="font-size:13px;padding:10px 20px" onclick="showPage('services')">Explore Anti-Ageing →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="bg-white">
+    <div class="text-center">
+      <div class="section-label">Why Us</div>
+      <h2 class="section-title">Why Patients Choose La Aesthetique</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="why-icon">👩‍⚕️</div>
+        <div><h4>Experienced Dermatologist</h4><p>Treatments led by qualified skin specialist Dr. Pradnya Asutkar with MD + Fellowship credentials.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon m">🔬</div>
+        <div><h4>Modern Technology</h4><p>Advanced laser and dermatology equipment for precise and effective procedures.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💝</div>
+        <div><h4>Personalized Care</h4><p>Customized treatment plans designed according to your unique skin and hair concerns.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon m">🧹</div>
+        <div><h4>Hygienic Environment</h4><p>Safe, sanitized, and patient-friendly clinical setup for your comfort and safety.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <div><h4>Result-Oriented</h4><p>Evidence-based procedures focused on visible and long-lasting results.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon m">💬</div>
+        <div><h4>Transparent Consultation</h4><p>Clear treatment guidance, honest recommendations, and thorough patient education.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="bg-teal">
+    <div class="text-center">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Our Treatment Process</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">1</div><h4>Consultation</h4><p>Detailed skin/hair analysis and understanding patient concerns.</p></div>
+      <div class="process-step"><div class="step-num">2</div><h4>Diagnosis</h4><p>Scientific assessment using dermatology tools and examination.</p></div>
+      <div class="process-step"><div class="step-num">3</div><h4>Treatment Plan</h4><p>Customized procedures and skincare recommendations.</p></div>
+      <div class="process-step"><div class="step-num">4</div><h4>Treatment</h4><p>Safe and effective treatment execution by expert hands.</p></div>
+      <div class="process-step"><div class="step-num">5</div><h4>Follow-Up Care</h4><p>Continuous monitoring and aftercare guidance.</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="bg-white">
+    <div class="text-center">
+      <div class="section-label">Patient Stories</div>
+      <h2 class="section-title">What Our Patients Say</h2>
+    </div>
+    <div class="grid-3">
+      <div class="testimonial-card">
+        <p>I visited La Aesthetique for acne treatment and saw excellent improvement within a few sessions. The doctor explained everything clearly and the staff was very supportive.</p>
+        <div class="stars">★★★★★</div>
+        <div class="patient">— Acne Treatment Patient</div>
+      </div>
+      <div class="testimonial-card">
+        <p>My hair fall reduced significantly after PRP therapy. The clinic is very hygienic and professional. I'm very happy with the results and highly recommend Dr. Asutkar.</p>
+        <div class="stars">★★★★★</div>
+        <div class="patient">— PRP Therapy Patient</div>
+      </div>
+      <div class="testimonial-card">
+        <p>I underwent laser treatment for pigmentation and the results were amazing. Highly recommended for anyone struggling with skin concerns. Very satisfied with the outcome.</p>
+        <div class="stars">★★★★★</div>
+        <div class="patient">— Laser Treatment Patient</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ PREVIEW -->
+  <section class="bg-off">
+    <div class="text-center">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div style="max-width:700px;margin:0 auto">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How do I know which treatment is suitable for me?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">Every treatment begins with a detailed consultation and skin/hair analysis to recommend the most suitable procedure tailored to your needs.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Are laser treatments safe?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes, our laser treatments are performed using advanced technology under expert supervision by Dr. Pradnya Asutkar, ensuring maximum safety and effectiveness.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How many sessions are required?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">The number of sessions depends on your skin condition, treatment type, and desired results. This is determined during your initial consultation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Do you provide treatments for both men and women?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes, we provide skin, hair, and aesthetic treatments for both men and women of all skin types and concerns.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="#" class="btn btn-teal" onclick="showPage('faq')">View All FAQs →</a>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>Book Your Consultation Today</h2>
+    <p>Take the first step toward healthier skin, stronger hair, and renewed confidence.</p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-white" onclick="showPage('contact')">📅 Book Appointment</a>
+      <a href="tel:8459323304" class="btn btn-outline">📞 Call Clinic</a>
+      <a href="https://wa.me/918459323304" class="btn btn-outline" target="_blank">💬 WhatsApp Us</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">LA AESTHETIQUE</div>
+        <div class="tagline">Skin · Hair · Laser Clinic</div>
+        <p>Advanced dermatology and aesthetic care led by Dr. Pradnya Asutkar in Nagpur. Personalized treatments, modern technology, and compassionate care.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+          <li><a href="#" onclick="showPage('services')">Services</a></li>
+          <li><a href="#" onclick="showPage('doctor')">Doctor Profile</a></li>
+          <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
+          <li><a href="#" onclick="showPage('faq')">FAQs</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Treatments</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('services')">Acne Treatment</a></li>
+          <li><a href="#" onclick="showPage('services')">Hair Fall Treatment</a></li>
+          <li><a href="#" onclick="showPage('services')">PRP Therapy</a></li>
+          <li><a href="#" onclick="showPage('services')">Laser Hair Removal</a></li>
+          <li><a href="#" onclick="showPage('services')">Pigmentation</a></li>
+          <li><a href="#" onclick="showPage('services')">Anti-Ageing</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>📍 Plot No. 9/30, In Front of BOI,<br>Besa Road, Manish Nagar,<br>Nagpur – 440037</p><br>
+        <p>📞 <a href="tel:8459323304">8459323304</a></p><br>
+        <p>🕐 Mon–Sat: 10AM–2PM, 6–9PM<br>🚫 Sunday: Closed</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 La Aesthetique. All rights reserved. | Dr. Pradnya Asutkar</p>
+      <p>Skin · Hair · Laser Clinic · Nagpur</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  ABOUT PAGE                                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-about" class="page page-top">
+  <div class="hero-section">
+    <h1>About La Aesthetique</h1>
+    <p>Advanced Dermatology & Aesthetic Care with a Personalized Approach</p>
+  </div>
+
+  <!-- ABOUT INTRO -->
+  <div class="about-intro bg-white">
+    <div>
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-title">A Modern Clinic Dedicated to Your Skin & Hair Health</h2>
+      <p style="color:var(--grey-dark);font-size:14.5px;line-height:1.8;margin-bottom:16px">La Aesthetique is a modern Skin, Hair & Laser Clinic founded with the vision of providing high-quality dermatology and aesthetic treatments in a safe, professional, and patient-friendly environment.</p>
+      <p style="color:var(--grey);font-size:14px;line-height:1.8;margin-bottom:16px">Under the guidance of Dr. Pradnya Asutkar, the clinic focuses on delivering advanced skincare, hair restoration, laser therapies, and cosmetic dermatology procedures using scientifically backed techniques and modern equipment.</p>
+      <p style="color:var(--grey);font-size:14px;line-height:1.8">We believe that healthy skin and hair are essential for confidence and overall well-being. Our goal is to offer treatments that are effective, ethical, and tailored to each patient's unique concerns.</p>
+    </div>
+    <div style="background:linear-gradient(160deg,var(--teal-pale),var(--beige));border-radius:var(--radius);padding:40px;display:flex;align-items:center;justify-content:center;min-height:320px">
+      <div style="text-align:center">
+        <div style="font-size:72px;margin-bottom:20px">🏥</div>
+        <div style="font-family:var(--serif);font-size:22px;color:var(--teal);margin-bottom:8px">La Aesthetique</div>
+        <div style="font-size:13px;color:var(--grey);letter-spacing:2px;text-transform:uppercase">Skin · Hair · Laser · Nagpur</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION VISION VALUES -->
+  <section class="bg-off">
+    <div class="text-center">
+      <div class="section-label">Our Foundation</div>
+      <h2 class="section-title">Mission, Vision & Values</h2>
+    </div>
+    <div class="mvv-grid">
+      <div class="mvv-card mission">
+        <div class="mvv-icon">🎯</div>
+        <h3>Our Mission</h3>
+        <p>To provide advanced dermatology and aesthetic solutions that enhance confidence, improve skin and hair health, and deliver long-lasting results through personalized medical care.</p>
+      </div>
+      <div class="mvv-card vision">
+        <div class="mvv-icon">🔭</div>
+        <h3>Our Vision</h3>
+        <p>To become a trusted destination for modern skin, hair, and laser treatments by combining medical expertise, innovative technology, and compassionate patient care.</p>
+      </div>
+      <div class="mvv-card values">
+        <div class="mvv-icon">💎</div>
+        <h3>Our Values</h3>
+        <ul class="values-list">
+          <li>Patient-Centered Care</li>
+          <li>Ethical Treatment Approach</li>
+          <li>Hygiene & Safety Standards</li>
+          <li>Transparency & Trust</li>
+          <li>Advanced Technology</li>
+          <li>Continuous Innovation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCTOR -->
+  <section class="bg-white">
+    <div class="text-center" style="margin-bottom:40px">
+      <div class="section-label">Expert Care</div>
+      <h2 class="section-title">Meet Dr. Pradnya Asutkar</h2>
+    </div>
+    <div class="doctor-card" style="max-width:860px;margin:0 auto">
+      <div class="doc-left">
+        <div class="doc-avatar">👩‍⚕️</div>
+        <div class="doc-name">Dr. Pradnya Asutkar</div>
+        <div class="doc-title">Dermatologist & Aesthetic Medicine Specialist</div>
+        <div class="qual-badges">
+          <span class="qual-badge">MBBS</span>
+          <span class="qual-badge">MD (Skin & VD)</span>
+          <span class="qual-badge">Fellowship in Lasers</span>
+          <span class="qual-badge">Fellowship in Cosmetology</span>
+        </div>
+      </div>
+      <div class="doc-right">
+        <h3 style="font-family:var(--serif);font-size:22px;margin-bottom:16px">About the Doctor</h3>
+        <p style="font-size:14.5px;line-height:1.8;color:var(--grey-dark);margin-bottom:16px">Dr. Pradnya Asutkar is a qualified dermatologist and aesthetic medicine specialist dedicated to helping patients achieve healthy skin, improved hair health, and enhanced confidence through advanced treatments.</p>
+        <p style="font-size:14px;line-height:1.8;color:var(--grey);margin-bottom:20px">With expertise in dermatology, laser procedures, cosmetology, and aesthetic medicine, Dr. Asutkar provides customized treatment plans based on individual skin types and concerns. Her patient-focused approach and commitment to modern medical techniques make her a trusted name in skin and aesthetic care.</p>
+        <div class="section-label" style="margin-bottom:10px">Specialization Areas</div>
+        <div class="expertise-tags">
+          <span class="etag">Acne & Scar Treatments</span>
+          <span class="etag">Pigmentation</span>
+          <span class="etag">Hair Fall Solutions</span>
+          <span class="etag">PRP & Mesotherapy</span>
+          <span class="etag">Laser Procedures</span>
+          <span class="etag">Anti-Ageing</span>
+          <span class="etag">Cosmetic Dermatology</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section class="bg-off">
+    <div class="text-center">
+      <div class="section-label">Clinic Infrastructure</div>
+      <h2 class="section-title">Our Clinic Facilities</h2>
+      <p class="section-subtitle">La Aesthetique is equipped with modern dermatology and laser technology for safe and effective treatments.</p>
+    </div>
+    <div class="grid-3">
+      <div class="facility-card"><div class="fac-icon">🔬</div><div><h4>Advanced Laser Equipment</h4><p>State-of-the-art laser machines for precise treatments.</p></div></div>
+      <div class="facility-card"><div class="fac-icon">🏥</div><div><h4>Modern Consultation Rooms</h4><p>Private and comfortable consultation spaces.</p></div></div>
+      <div class="facility-card"><div class="fac-icon">🔍</div><div><h4>Skin Analysis Technology</h4><p>Advanced diagnostic tools for accurate assessment.</p></div></div>
+      <div class="facility-card"><div class="fac-icon">✨</div><div><h4>Hygienic Procedure Rooms</h4><p>Sanitized clinical environment for all procedures.</p></div></div>
+      <div class="facility-card"><div class="fac-icon">🛋️</div><div><h4>Comfortable Waiting Area</h4><p>Patient-friendly and welcoming clinic environment.</p></div></div>
+      <div class="facility-card"><div class="fac-icon">💬</div><div><h4>Personalized Support</h4><p>Dedicated consultation and aftercare guidance.</p></div></div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="bg-white">
+    <div class="text-center">
+      <div class="section-label">Our Advantage</div>
+      <h2 class="section-title">Why Choose La Aesthetique</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card"><div class="why-icon">👩‍⚕️</div><div><h4>Experienced Dermatologist</h4><p>Board-certified specialist with fellowship qualifications in lasers and cosmetology.</p></div></div>
+      <div class="why-card"><div class="why-icon m">📋</div><div><h4>Customized Plans</h4><p>Each patient receives a tailored treatment plan matching their skin condition and goals.</p></div></div>
+      <div class="why-card"><div class="why-icon">🧬</div><div><h4>Scientific Methods</h4><p>Evidence-based dermatology and aesthetic procedures.</p></div></div>
+      <div class="why-card"><div class="why-icon m">⚙️</div><div><h4>Advanced Technology</h4><p>Modern laser and aesthetic equipment for best results.</p></div></div>
+      <div class="why-card"><div class="why-icon">😊</div><div><h4>Patient Satisfaction</h4><p>We measure success by your visible improvement and confidence.</p></div></div>
+      <div class="why-card"><div class="why-icon m">🤝</div><div><h4>Comfortable Experience</h4><p>Warm, supportive clinical environment from consultation to recovery.</p></div></div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Start Your Transformation Journey</h2>
+    <p>Consult with Dr. Pradnya Asutkar for personalized care.</p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-white" onclick="showPage('contact')">📅 Book Consultation</a>
+      <a href="tel:8459323304" class="btn btn-outline">📞 Call Now</a>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="brand">LA AESTHETIQUE</div><div class="tagline">Skin · Hair · Laser Clinic</div><p>Advanced dermatology and aesthetic care in Nagpur by Dr. Pradnya Asutkar.</p></div>
+      <div><h4>Quick Links</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('doctor')">Doctor</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
+      <div><h4>Treatments</h4><ul><li><a href="#" onclick="showPage('services')">Acne Treatment</a></li><li><a href="#" onclick="showPage('services')">PRP Therapy</a></li><li><a href="#" onclick="showPage('services')">Laser Hair Removal</a></li><li><a href="#" onclick="showPage('services')">Anti-Ageing</a></li></ul></div>
+      <div class="footer-contact"><h4>Contact</h4><p>📍 Plot No. 9/30, Manish Nagar, Nagpur – 440037</p><br><p>📞 <a href="tel:8459323304">8459323304</a></p><br><p>🕐 Mon–Sat: 10AM–2PM, 6–9PM</p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 La Aesthetique. All rights reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SERVICES PAGE                                          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-services" class="page page-top">
+  <div class="hero-section">
+    <h1>Comprehensive Treatments</h1>
+    <p>Advanced Aesthetic & Dermatology Solutions Tailored for You</p>
+  </div>
+
+  <!-- SKIN TREATMENTS -->
+  <section class="bg-white">
+    <div class="section-label">Category 01</div>
+    <h2 class="section-title">Skin Treatments</h2>
+    <p class="section-subtitle">We provide advanced dermatology treatments for various skin concerns including acne, pigmentation, scars, infections, allergies, and skin rejuvenation.</p>
+    <div class="grid-2">
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon">🧴</div><div><h3>Acne & Acne Scar Treatment</h3><p>Treatment solutions for active acne, acne marks, deep scars, and uneven skin texture.</p></div></div>
+        <div class="td-body"><p>Our comprehensive acne management program addresses active breakouts and their aftermath — scars, marks, and uneven texture — using a combination of proven dermatological procedures.</p><div class="td-tags"><span class="tag">Chemical Peels</span><span class="tag">Acne Scar Procedures</span><span class="tag">Microdermabrasion</span><span class="tag">Skin Polishing</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon">🌟</div><div><h3>Pigmentation Treatment</h3><p>Treatments designed to reduce tanning, pigmentation, dark spots, and uneven skin tone.</p></div></div>
+        <div class="td-body"><p>Targeted treatments to reduce melanin overproduction, correct uneven skin tone, and restore natural radiance using advanced dermatology techniques.</p><div class="td-tags"><span class="tag">Chemical Peels</span><span class="tag">Laser Pigmentation Removal</span><span class="tag">Skin Brightening</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon">💧</div><div><h3>Hydra Facial</h3><p>Deep cleansing and hydration treatment for glowing, refreshed, and healthy skin.</p></div></div>
+        <div class="td-body"><p>A multi-step treatment that cleanses, exfoliates, and infuses the skin with intensive serums for an immediate glow with no downtime required.</p><div class="td-tags"><span class="tag">Deep Cleansing</span><span class="tag">Hydration Boost</span><span class="tag">Skin Glow</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon">❄️</div><div><h3>Cryotherapy</h3><p>Procedure used for removal of warts, skin tags, and certain skin lesions.</p></div></div>
+        <div class="td-body"><p>Controlled application of extreme cold to remove benign skin lesions quickly and effectively with minimal scarring and recovery time.</p><div class="td-tags"><span class="tag">Wart Removal</span><span class="tag">Skin Tag Removal</span><span class="tag">Lesion Treatment</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon">💉</div><div><h3>Intralesional Injection</h3><p>Advanced dermatology treatment for specific skin conditions and lesions.</p></div></div>
+        <div class="td-body"><p>Precisely administered injections directly into skin lesions for targeted, effective treatment of specific dermatological conditions.</p><div class="td-tags"><span class="tag">Keloid Treatment</span><span class="tag">Cyst Treatment</span><span class="tag">Skin Conditions</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon">🔬</div><div><h3>Dermoscopy & Onychoscopy</h3><p>Advanced diagnostic procedures for skin and nail examination.</p></div></div>
+        <div class="td-body"><p>High-resolution diagnostic imaging for detailed examination of skin and nail conditions, enabling precise diagnosis and targeted treatment planning.</p><div class="td-tags"><span class="tag">Skin Diagnosis</span><span class="tag">Nail Examination</span><span class="tag">Mole Analysis</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HAIR TREATMENTS -->
+  <section class="bg-off">
+    <div class="section-label">Category 02</div>
+    <h2 class="section-title">Hair Treatments</h2>
+    <p class="section-subtitle">Comprehensive solutions for hair fall, baldness, thinning hair, scalp infections, and hair rejuvenation.</p>
+    <div class="grid-2">
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon m">🩸</div><div><h3>PRP Therapy</h3><p>Platelet-rich plasma therapy to stimulate hair growth naturally.</p></div></div>
+        <div class="td-body"><p>Using your own blood's growth factors, PRP therapy stimulates dormant hair follicles, promotes new hair growth, and strengthens existing hair naturally.</p><div class="td-tags"><span class="tag m">Hair Regrowth</span><span class="tag m">Scalp Rejuvenation</span><span class="tag m">Natural Treatment</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon m">🧬</div><div><h3>GFC Mesotherapy</h3><p>Growth factor concentrate therapy for hair density and scalp health.</p></div></div>
+        <div class="td-body"><p>Advanced growth factor concentrate derived from your own blood for superior results in hair density improvement and scalp health restoration.</p><div class="td-tags"><span class="tag m">GFC Treatment</span><span class="tag m">Hair Density</span><span class="tag m">Scalp Health</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon m">⚗️</div><div><h3>Stem Cell Therapy</h3><p>Advanced regenerative treatment for hair restoration.</p></div></div>
+        <div class="td-body"><p>Cutting-edge regenerative medicine approach using stem cells to revitalize hair follicles and promote significant hair restoration results.</p><div class="td-tags"><span class="tag m">Stem Cell Activation</span><span class="tag m">Hair Restoration</span><span class="tag m">Follicle Repair</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon m">🔩</div><div><h3>Derma Roller & Derma Pen</h3><p>Microneedling procedures for scalp stimulation and hair growth.</p></div></div>
+        <div class="td-body"><p>Minimally invasive microneedling treatments that stimulate scalp circulation, enhance product absorption, and promote natural hair growth mechanisms.</p><div class="td-tags"><span class="tag m">Microneedling</span><span class="tag m">Scalp Stimulation</span><span class="tag m">Collagen Boost</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon m">🔍</div><div><h3>Trichoscopy</h3><p>Digital scalp and hair analysis for accurate diagnosis.</p></div></div>
+        <div class="td-body"><p>Advanced digital dermoscopy of the scalp and hair for accurate diagnosis of hair loss conditions, guiding the most effective treatment approach.</p><div class="td-tags"><span class="tag m">Hair Diagnosis</span><span class="tag m">Scalp Analysis</span><span class="tag m">Digital Imaging</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon m">🧵</div><div><h3>Hair Threads</h3><p>Specialized thread-based treatment for hair improvement.</p></div></div>
+        <div class="td-body"><p>Innovative thread-based scalp treatment that enhances blood circulation and stimulates hair follicles for improved hair health and growth.</p><div class="td-tags"><span class="tag m">Thread Treatment</span><span class="tag m">Circulation Boost</span><span class="tag m">Hair Strength</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LASER TREATMENTS -->
+  <section class="bg-white">
+    <div class="section-label">Category 03</div>
+    <h2 class="section-title">Laser Treatments</h2>
+    <p class="section-subtitle">Modern laser procedures performed using advanced technology for safe and effective results.</p>
+    <div class="grid-2">
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon b">✨</div><div><h3>Laser Hair Removal</h3><p>Long-term reduction of unwanted hair with advanced laser technology.</p></div></div>
+        <div class="td-body"><p>Safe, effective permanent hair reduction using advanced laser technology that targets hair follicles while protecting surrounding skin for smooth, hair-free results.</p><div class="td-tags"><span class="tag">Permanent Reduction</span><span class="tag">All Skin Types</span><span class="tag">Face & Body</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon b">🎨</div><div><h3>Tattoo Removal</h3><p>Laser-assisted tattoo removal with minimal skin damage.</p></div></div>
+        <div class="td-body"><p>Advanced Q-switched laser technology breaks down tattoo ink particles safely, allowing your body to naturally eliminate them for gradual, effective removal.</p><div class="td-tags"><span class="tag">Q-Switch Laser</span><span class="tag">All Ink Colors</span><span class="tag">Safe Removal</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon b">🌟</div><div><h3>Laser Facial</h3><p>Skin rejuvenation to improve glow, texture, and collagen production.</p></div></div>
+        <div class="td-body"><p>Non-invasive laser treatment that stimulates collagen production, reduces fine lines, improves skin texture, and restores a youthful, radiant complexion.</p><div class="td-tags"><span class="tag">Collagen Boost</span><span class="tag">Skin Glow</span><span class="tag">Texture Improvement</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon b">🔧</div><div><h3>Scar & Stretch Marks Reduction</h3><p>Advanced laser procedures to minimize scars and stretch marks.</p></div></div>
+        <div class="td-body"><p>Fractional laser treatments that remodel scar tissue and reduce the appearance of stretch marks by stimulating natural skin regeneration processes.</p><div class="td-tags"><span class="tag">Acne Scars</span><span class="tag">Stretch Marks</span><span class="tag">Skin Resurfacing</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANTI-AGEING -->
+  <section class="bg-off">
+    <div class="section-label">Category 04</div>
+    <h2 class="section-title">Anti-Ageing Treatments</h2>
+    <p class="section-subtitle">Restore youthful, healthy-looking skin with modern non-surgical anti-ageing procedures.</p>
+    <div class="grid-2">
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon" style="background:linear-gradient(135deg,#6b4f9e,#9b7fd4)">💆</div><div><h3>Botox</h3><p>Treatment to reduce fine lines and wrinkles effectively.</p></div></div>
+        <div class="td-body"><p>Precisely injected botulinum toxin relaxes facial muscles that cause dynamic wrinkles, smoothing expression lines for a naturally refreshed appearance.</p><div class="td-tags"><span class="tag m">Wrinkle Reduction</span><span class="tag m">Forehead Lines</span><span class="tag m">Crow's Feet</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon" style="background:linear-gradient(135deg,#6b4f9e,#9b7fd4)">💎</div><div><h3>Dermal Fillers</h3><p>Facial volume enhancement and contour correction.</p></div></div>
+        <div class="td-body"><p>Hyaluronic acid-based fillers restore lost volume, enhance facial contours, and create a more youthful, balanced facial appearance with natural-looking results.</p><div class="td-tags"><span class="tag m">Volume Restoration</span><span class="tag m">Lip Enhancement</span><span class="tag m">Cheek Augmentation</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon" style="background:linear-gradient(135deg,#6b4f9e,#9b7fd4)">💉</div><div><h3>Skin Boosters</h3><p>Hydration and glow-enhancing injectable treatments.</p></div></div>
+        <div class="td-body"><p>Micro-injections of hyaluronic acid deeply hydrate the skin from within, improving skin quality, elasticity, and radiance for a lasting natural glow.</p><div class="td-tags"><span class="tag m">Deep Hydration</span><span class="tag m">Skin Glow</span><span class="tag m">Elasticity</span></div></div>
+      </div>
+      <div class="treatment-detail">
+        <div class="td-header"><div class="td-icon" style="background:linear-gradient(135deg,#6b4f9e,#9b7fd4)">🧵</div><div><h3>Thread Lift</h3><p>Non-surgical lifting treatment for tighter and firmer skin.</p></div></div>
+        <div class="td-body"><p>Minimally invasive PDO thread lift provides immediate skin tightening and long-term collagen stimulation, lifting sagging skin without the need for surgery.</p><div class="td-tags"><span class="tag m">Non-Surgical Lift</span><span class="tag m">Skin Tightening</span><span class="tag m">Jawline</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE CTA -->
+  <section style="background:var(--teal-pale);text-align:center;padding:clamp(50px,6vw,80px) clamp(20px,5vw,80px)">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title">Need Personalized Treatment Guidance?</h2>
+    <p class="section-subtitle">Book a consultation with Dr. Pradnya Asutkar to understand the most suitable treatment options for your skin and hair concerns.</p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-teal" onclick="showPage('contact')">📅 Book Consultation</a>
+      <a href="tel:8459323304" class="btn btn-outline" style="border-color:var(--teal);color:var(--teal)">📞 Call Now</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="brand">LA AESTHETIQUE</div><div class="tagline">Skin · Hair · Laser Clinic</div><p>Advanced dermatology and aesthetic care in Nagpur.</p></div>
+      <div><h4>Services</h4><ul><li><a href="#">Skin Treatments</a></li><li><a href="#">Hair Treatments</a></li><li><a href="#">Laser Treatments</a></li><li><a href="#">Anti-Ageing</a></li></ul></div>
+      <div><h4>Quick Links</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About Us</a></li><li><a href="#" onclick="showPage('doctor')">Doctor</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
+      <div class="footer-contact"><h4>Contact</h4><p>📍 Manish Nagar, Nagpur – 440037</p><br><p>📞 <a href="tel:8459323304">8459323304</a></p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 La Aesthetique. All rights reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  DOCTOR PAGE                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-doctor" class="page page-top">
+  <div class="doctor-hero">
+    <div class="doc-hero-avatar">👩‍⚕️</div>
+    <div class="doc-hero-text">
+      <h1>Dr. Pradnya Asutkar</h1>
+      <p>Dermatologist & Aesthetic Medicine Specialist · Nagpur</p>
+      <div class="doc-qual-row">
+        <span class="doc-qual-pill">MBBS</span>
+        <span class="doc-qual-pill">MD (Skin & VD)</span>
+        <span class="doc-qual-pill">Fellowship in Lasers</span>
+        <span class="doc-qual-pill">Fellowship in Cosmetology</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="bg-white">
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:start" class="about-intro" style="padding:0">
+      <div>
+        <div class="section-label">Profile</div>
+        <h2 class="section-title">About Dr. Pradnya Asutkar</h2>
+        <p style="font-size:14.5px;line-height:1.9;color:var(--grey-dark);margin-bottom:16px">Dr. Pradnya Asutkar specializes in advanced dermatology, aesthetic medicine, cosmetology, and laser treatments. She focuses on personalized treatment approaches that help patients achieve healthy skin, improved hair growth, and aesthetic confidence.</p>
+        <p style="font-size:14px;line-height:1.8;color:var(--grey);margin-bottom:24px">With a philosophy centered on combining scientific diagnosis with individualized care, Dr. Asutkar ensures every patient receives detailed consultation, transparent guidance, and medically sound treatment recommendations tailored to their unique needs.</p>
+        <div style="background:var(--teal-pale);border-radius:12px;padding:24px;border-left:4px solid var(--teal)">
+          <h4 style="font-size:15px;margin-bottom:10px;color:var(--teal)">Patient-Focused Treatment Philosophy</h4>
+          <p style="font-size:13.5px;line-height:1.7;color:var(--grey-dark)">Dr. Asutkar believes in combining scientific diagnosis with customized treatment plans. Every patient receives detailed consultation, transparent guidance, and medically sound treatment recommendations.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card" style="text-align:center">
+          <div style="font-size:48px;margin-bottom:12px">🏆</div>
+          <h3 style="font-family:var(--serif);font-size:20px;margin-bottom:8px">Qualifications</h3>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="background:var(--teal-pale);border-radius:8px;padding:10px;font-size:13px;color:var(--teal);font-weight:500">MBBS</div>
+            <div style="background:var(--teal-pale);border-radius:8px;padding:10px;font-size:13px;color:var(--teal);font-weight:500">MD (Skin & VD)</div>
+            <div style="background:var(--teal-pale);border-radius:8px;padding:10px;font-size:13px;color:var(--teal);font-weight:500">Fellowship in Lasers</div>
+            <div style="background:var(--teal-pale);border-radius:8px;padding:10px;font-size:13px;color:var(--teal);font-weight:500">Fellowship in Cosmetology & Aesthetic Medicine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-off">
+    <div class="text-center">
+      <div class="section-label">Clinical Expertise</div>
+      <h2 class="section-title">Areas of Expertise</h2>
+    </div>
+    <div class="grid-4">
+      <div class="why-card"><div class="why-icon">🧴</div><div><h4>Acne Management</h4><p>Active acne and scar treatments.</p></div></div>
+      <div class="why-card"><div class="why-icon m">💇</div><div><h4>Hair Restoration</h4><p>Hair fall and baldness solutions.</p></div></div>
+      <div class="why-card"><div class="why-icon">🩸</div><div><h4>PRP & GFC Therapy</h4><p>Advanced hair and skin PRP treatments.</p></div></div>
+      <div class="why-card"><div class="why-icon m">✨</div><div><h4>Laser Treatments</h4><p>Full range of laser procedures.</p></div></div>
+      <div class="why-card"><div class="why-icon">🌟</div><div><h4>Pigmentation</h4><p>Tan, dark spots, uneven tone.</p></div></div>
+      <div class="why-card"><div class="why-icon m">💆</div><div><h4>Cosmetic Dermatology</h4><p>Aesthetic and beauty procedures.</p></div></div>
+      <div class="why-card"><div class="why-icon">⏳</div><div><h4>Anti-Ageing</h4><p>Botox, fillers, thread lifts.</p></div></div>
+      <div class="why-card"><div class="why-icon m">🔬</div><div><h4>Advanced Diagnosis</h4><p>Dermoscopy & trichoscopy.</p></div></div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Consult with Dr. Pradnya Asutkar</h2>
+    <p>Get a personalized treatment plan for your skin and hair concerns.</p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-white" onclick="showPage('contact')">📅 Book Appointment</a>
+      <a href="tel:8459323304" class="btn btn-outline">📞 Call Now</a>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="brand">LA AESTHETIQUE</div><div class="tagline">Skin · Hair · Laser Clinic</div><p>Led by Dr. Pradnya Asutkar – Dermatologist & Aesthetic Medicine Specialist, Nagpur.</p></div>
+      <div><h4>Quick Links</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
+      <div><h4>Treatments</h4><ul><li><a href="#" onclick="showPage('services')">Skin Treatments</a></li><li><a href="#" onclick="showPage('services')">Hair Treatments</a></li><li><a href="#" onclick="showPage('services')">Laser Treatments</a></li></ul></div>
+      <div class="footer-contact"><h4>Contact</h4><p>📍 Manish Nagar, Nagpur – 440037</p><br><p>📞 <a href="tel:8459323304">8459323304</a></p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 La Aesthetique. All rights reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  GALLERY PAGE                                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-gallery" class="page page-top">
+  <div class="hero-section">
+    <h1>Before & After Gallery</h1>
+    <p>Real Transformations — Visible, Natural, Confidence-Boosting Results</p>
+  </div>
+
+  <section class="bg-white">
+    <div class="text-center">
+      <div class="section-label">Patient Results</div>
+      <h2 class="section-title">Real Transformations</h2>
+      <p class="section-subtitle">Witness visible improvements through our advanced dermatology and aesthetic treatments. From acne reduction and pigmentation correction to hair restoration and skin rejuvenation.</p>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;justify-content:center">
+      <button class="faq-cat active" onclick="filterGallery('all',this)">All Results</button>
+      <button class="faq-cat" onclick="filterGallery('acne',this)">Acne Treatment</button>
+      <button class="faq-cat" onclick="filterGallery('pigmentation',this)">Pigmentation</button>
+      <button class="faq-cat" onclick="filterGallery('hair',this)">Hair Regrowth</button>
+      <button class="faq-cat" onclick="filterGallery('laser',this)">Laser Hair Removal</button>
+      <button class="faq-cat" onclick="filterGallery('ageing',this)">Anti-Ageing</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item" data-cat="acne"><div class="gi-icon">✨</div><div class="gi-label">Acne Treatment</div><div class="gi-sub">Significant improvement in 6 sessions</div></div>
+      <div class="gallery-item" data-cat="acne"><div class="gi-icon">🌟</div><div class="gi-label">Acne Scar Reduction</div><div class="gi-sub">Chemical peel + microdermabrasion</div></div>
+      <div class="gallery-item" data-cat="pigmentation"><div class="gi-icon">🌈</div><div class="gi-label">Pigmentation Correction</div><div class="gi-sub">Laser + chemical peel results</div></div>
+      <div class="gallery-item" data-cat="pigmentation"><div class="gi-icon">💫</div><div class="gi-label">Dark Spot Removal</div><div class="gi-sub">4-session treatment outcome</div></div>
+      <div class="gallery-item" data-cat="hair"><div class="gi-icon">💇</div><div class="gi-label">Hair Regrowth – PRP</div><div class="gi-sub">3-month PRP therapy progress</div></div>
+      <div class="gallery-item" data-cat="hair"><div class="gi-icon">🌱</div><div class="gi-label">GFC Mesotherapy</div><div class="gi-sub">Hair density improvement</div></div>
+      <div class="gallery-item" data-cat="hair"><div class="gi-icon">🌿</div><div class="gi-label">Stem Cell Therapy</div><div class="gi-sub">Advanced hair restoration</div></div>
+      <div class="gallery-item" data-cat="laser"><div class="gi-icon">✨</div><div class="gi-label">Laser Hair Reduction</div><div class="gi-sub">Permanent hair removal progress</div></div>
+      <div class="gallery-item" data-cat="laser"><div class="gi-icon">🎨</div><div class="gi-label">Tattoo Removal</div><div class="gi-sub">Progressive fading over sessions</div></div>
+      <div class="gallery-item" data-cat="ageing"><div class="gi-icon">⏳</div><div class="gi-label">Botox Treatment</div><div class="gi-sub">Natural wrinkle reduction</div></div>
+      <div class="gallery-item" data-cat="ageing"><div class="gi-icon">💎</div><div class="gi-label">Dermal Fillers</div><div class="gi-sub">Volume restoration results</div></div>
+      <div class="gallery-item" data-cat="ageing"><div class="gi-icon">🧵</div><div class="gi-label">Thread Lift</div><div class="gi-sub">Non-surgical lifting outcome</div></div>
+    </div>
+  </section>
+
+  <section style="background:var(--beige);text-align:center;padding:clamp(40px,6vw,70px) clamp(20px,5vw,80px)">
+    <h2 class="section-title">See More Results In Person</h2>
+    <p class="section-subtitle">Visit our clinic to view detailed before & after photos and discuss your treatment goals with Dr. Pradnya Asutkar.</p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-teal" onclick="showPage('contact')">📅 Book Consultation</a>
+      <a href="https://wa.me/918459323304" class="btn btn-primary" target="_blank">💬 WhatsApp Us</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="brand">LA AESTHETIQUE</div><div class="tagline">Skin · Hair · Laser Clinic</div><p>Real results, proven treatments, personalized care in Nagpur.</p></div>
+      <div><h4>Quick Links</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
+      <div><h4>Treatments</h4><ul><li><a href="#" onclick="showPage('services')">Acne Treatment</a></li><li><a href="#" onclick="showPage('services')">PRP Therapy</a></li><li><a href="#" onclick="showPage('services')">Laser Treatments</a></li></ul></div>
+      <div class="footer-contact"><h4>Contact</h4><p>📍 Manish Nagar, Nagpur – 440037</p><br><p>📞 <a href="tel:8459323304">8459323304</a></p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 La Aesthetique. All rights reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  FAQ PAGE                                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-faq" class="page page-top">
+  <div class="hero-section">
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know about our treatments and clinic</p>
+  </div>
+
+  <section class="bg-white">
+    <div style="max-width:760px;margin:0 auto">
+      <div class="text-center">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Your Questions Answered</h2>
+      </div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What skin conditions do you treat?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">We treat a wide range of skin conditions including acne and acne scars, pigmentation, dark spots, melasma, warts, skin tags, infections, allergies, eczema, psoriasis, rosacea, and various chronic and infectious skin disorders. We also provide cosmetic dermatology and skin rejuvenation treatments.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Are aesthetic procedures safe?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes, all our aesthetic procedures are performed by qualified specialist Dr. Pradnya Asutkar using advanced, approved technology and medical-grade products. We follow strict hygiene and safety protocols to ensure patient safety at every step.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How long do treatments take?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">Treatment duration varies by procedure. Consultations typically take 30–45 minutes. Most treatment sessions range from 30 minutes to 1.5 hours. A full treatment plan will be outlined during your initial consultation including session duration and estimated total timeline.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Is PRP treatment painful?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">PRP treatment involves a mild level of discomfort during the injection phase. Topical numbing cream is applied beforehand to minimize discomfort. Most patients describe it as a mild pricking sensation. The procedure is well-tolerated by the majority of patients.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How many laser sessions are required?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">The number of laser sessions depends on the treatment type and individual factors. Laser hair removal typically requires 6–8 sessions for permanent reduction. Pigmentation and scar treatments may need 3–6 sessions. Exact recommendations are provided during your consultation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What precautions should be followed after treatment?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">Post-treatment care instructions vary by procedure. General precautions include sun protection, avoiding harsh skincare products, adequate hydration, and following the specific aftercare guidelines provided by Dr. Asutkar. Detailed aftercare instructions are given after every treatment session.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Can men also undergo these treatments?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">Absolutely. We provide comprehensive skin, hair, and aesthetic treatments for both men and women of all ages and skin types. Many of our male patients seek treatments for acne, hair fall, laser hair removal, and skin rejuvenation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How soon are results visible?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">Results vary depending on the treatment. Some procedures like Hydra Facial show immediate results. PRP therapy for hair growth shows gradual improvement over 3–6 months. Laser treatments for pigmentation may show significant results within 2–4 sessions. Your doctor will set realistic expectations during consultation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Are consultations available before treatment?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes, every patient begins with a thorough initial consultation. Dr. Asutkar conducts a detailed skin/hair analysis, reviews your medical history, understands your concerns and goals, and recommends the most suitable personalized treatment plan before any procedure begins.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How do I book an appointment?</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">You can book an appointment by calling us at 8459323304, messaging us on WhatsApp, filling out the appointment form on our Contact page, or visiting the clinic directly at Plot No. 9/30, Besa Road, Manish Nagar, Nagpur. Our clinic is open Monday to Saturday, 10AM–2PM and 6PM–9PM.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Still Have Questions?</h2>
+    <p>Our team is happy to help. Get in touch for any additional queries.</p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-white" onclick="showPage('contact')">📅 Book Consultation</a>
+      <a href="https://wa.me/918459323304" class="btn btn-outline" target="_blank">💬 WhatsApp Us</a>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="brand">LA AESTHETIQUE</div><div class="tagline">Skin · Hair · Laser Clinic</div><p>Advanced dermatology and aesthetic care in Nagpur.</p></div>
+      <div><h4>Quick Links</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
+      <div><h4>Treatments</h4><ul><li><a href="#" onclick="showPage('services')">Skin Treatments</a></li><li><a href="#" onclick="showPage('services')">Hair Treatments</a></li><li><a href="#" onclick="showPage('services')">Laser Treatments</a></li></ul></div>
+      <div class="footer-contact"><h4>Contact</h4><p>📍 Manish Nagar, Nagpur – 440037</p><br><p>📞 <a href="tel:8459323304">8459323304</a></p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 La Aesthetique. All rights reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  CONTACT PAGE                                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-contact" class="page page-top">
+  <div class="hero-section">
+    <h1>Contact La Aesthetique</h1>
+    <p>We're Here to Help You Begin Your Skin & Hair Transformation Journey</p>
+  </div>
+
+  <section class="bg-white">
+    <div class="contact-layout">
+      <div class="contact-info-card">
+        <h3>Get in Touch</h3>
+        <p>Reach us through any of these channels to book your consultation or ask any questions.</p>
+
+        <div class="contact-detail">
+          <div class="cd-icon">📍</div>
+          <div class="cd-info">
+            <h4>Clinic Address</h4>
+            <p>Plot No. 9 & 30, In Front of BOI,<br>Besa Road, Manish Nagar,<br>Nagpur – 440037</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon">📞</div>
+          <div class="cd-info">
+            <h4>Phone Number</h4>
+            <p><a href="tel:8459323304" style="color:white;text-decoration:none">8459323304</a></p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon">💬</div>
+          <div class="cd-info">
+            <h4>WhatsApp</h4>
+            <p><a href="https://wa.me/918459323304" style="color:#7edfd0" target="_blank">Chat on WhatsApp →</a></p>
+          </div>
+        </div>
+
+        <div style="margin-top:24px">
+          <h4 style="font-size:12px;color:rgba(255,255,255,0.6);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">Consultation Timings</h4>
+          <div class="timing-row"><span class="day">Monday – Saturday</span><span class="time">10:00 AM – 2:00 PM</span></div>
+          <div class="timing-row"><span class="day">Evening</span><span class="time">6:00 PM – 9:00 PM</span></div>
+          <div class="timing-row"><span class="day">Sunday</span><span class="time" style="color:#ff9999">Closed</span></div>
+        </div>
+
+        <div style="margin-top:28px">
+          <a href="https://wa.me/918459323304" class="btn btn-white" target="_blank" style="width:100%;justify-content:center;margin-bottom:10px">💬 Quick WhatsApp Chat</a>
+          <a href="tel:8459323304" class="btn btn-outline" style="width:100%;justify-content:center">📞 Call Directly</a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Book an Appointment</h3>
+        <p class="sub">Fill in your details and we'll confirm your consultation slot.</p>
+        <div class="form-grid">
+          <div class="form-group"><label>Full Name *</label><input type="text" placeholder="Your full name"></div>
+          <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="Your mobile number"></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="Your email (optional)"></div>
+          <div class="form-group">
+            <label>Treatment Interest *</label>
+            <select>
+              <option value="">Select treatment</option>
+              <option>Skin Treatment</option>
+              <option>Acne & Scar Treatment</option>
+              <option>Pigmentation Treatment</option>
+              <option>Hydra Facial</option>
+              <option>Hair Fall Treatment</option>
+              <option>PRP Therapy</option>
+              <option>GFC Mesotherapy</option>
+              <option>Laser Hair Removal</option>
+              <option>Tattoo Removal</option>
+              <option>Laser Facial</option>
+              <option>Botox</option>
+              <option>Dermal Fillers</option>
+              <option>Thread Lift</option>
+              <option>General Consultation</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Preferred Date</label><input type="date"></div>
+          <div class="form-group"><label>Preferred Time</label>
+            <select>
+              <option>Morning (10AM–12PM)</option>
+              <option>Afternoon (12PM–2PM)</option>
+              <option>Evening (6PM–8PM)</option>
+              <option>Evening (8PM–9PM)</option>
+            </select>
+          </div>
+          <div class="form-group form-span"><label>Message / Concern</label><textarea placeholder="Briefly describe your skin or hair concern..."></textarea></div>
+        </div>
+        <button class="btn btn-teal" style="width:100%;justify-content:center;font-size:15px;padding:16px" onclick="submitForm()">📅 Schedule Consultation</button>
+        <div class="success-msg" id="successMsg">✅ Thank you! Your consultation request has been submitted. We'll contact you shortly to confirm your appointment.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP SECTION -->
+  <section class="bg-off" style="text-align:center">
+    <div class="section-label">Location</div>
+    <h2 class="section-title">Find Us Easily</h2>
+    <p class="section-subtitle">We're located at Plot No. 9 & 30, In Front of Bank of India, Besa Road, Manish Nagar, Nagpur – 440037</p>
+    <div style="background:var(--teal-pale);border-radius:var(--radius);padding:48px;max-width:700px;margin:0 auto;border:2px dashed var(--teal)">
+      <div style="font-size:48px;margin-bottom:16px">📍</div>
+      <h3 style="font-family:var(--serif);font-size:22px;color:var(--teal);margin-bottom:8px">La Aesthetique Clinic</h3>
+      <p style="color:var(--grey-dark);font-size:14px;line-height:1.7">Plot No. 9 & 30, In Front of BOI, Besa Road,<br>Manish Nagar, Nagpur – 440037</p>
+      <a href="https://maps.google.com/?q=Manish+Nagar+Nagpur" target="_blank" class="btn btn-teal" style="margin-top:20px">🗺️ Open in Google Maps</a>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Need Quick Assistance?</h2>
+    <p>Connect with us directly on WhatsApp for appointment booking, treatment inquiries, and consultation support.</p>
+    <div class="btn-group">
+      <a href="https://wa.me/918459323304" class="btn btn-white" target="_blank">💬 Chat on WhatsApp</a>
+      <a href="tel:8459323304" class="btn btn-outline">📞 Call Clinic</a>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="brand">LA AESTHETIQUE</div><div class="tagline">Skin · Hair · Laser Clinic</div><p>Advanced dermatology and aesthetic care in Nagpur by Dr. Pradnya Asutkar.</p></div>
+      <div><h4>Quick Links</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About Us</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('doctor')">Doctor</a></li></ul></div>
+      <div><h4>Treatments</h4><ul><li><a href="#" onclick="showPage('services')">Acne Treatment</a></li><li><a href="#" onclick="showPage('services')">Hair Fall Treatment</a></li><li><a href="#" onclick="showPage('services')">Laser Hair Removal</a></li><li><a href="#" onclick="showPage('services')">Anti-Ageing</a></li></ul></div>
+      <div class="footer-contact"><h4>Contact Us</h4><p>📍 Plot No. 9/30, In Front of BOI,<br>Besa Road, Manish Nagar,<br>Nagpur – 440037</p><br><p>📞 <a href="tel:8459323304">8459323304</a></p><br><p>🕐 Mon–Sat: 10AM–2PM & 6–9PM</p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 La Aesthetique. All rights reserved. | Dr. Pradnya Asutkar, Nagpur</p></div>
+  </footer>
+</div>
+
+<script>
+  // PAGE NAVIGATION
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    // update nav active
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
+    const navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active-link');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+
+  // MOBILE MENU
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const ham = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    ham.classList.toggle('open');
+  }
+
+  // FAQ TOGGLE
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    // close all in same container
+    const container = item.parentElement;
+    container.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // GALLERY FILTER
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.faq-cat').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const items = document.querySelectorAll('#galleryGrid .gallery-item');
+    items.forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // FORM SUBMIT
+  function submitForm() {
+    const msg = document.getElementById('successMsg');
+    msg.style.display = 'block';
+    setTimeout(() => {
+      msg.style.display = 'none';
+    }, 5000);
+  }
+
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('mobileMenu');
+    const ham = document.getElementById('hamburger');
+    if (!menu.contains(e.target) && !ham.contains(e.target) && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      ham.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
